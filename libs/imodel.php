@@ -5,4 +5,5 @@ interface iModel {
     public function getById($id);
     public function delete($id);
     public function modify();
+    public function from($array);
 }

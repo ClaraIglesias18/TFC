@@ -1,4 +1,5 @@
 <?php
+include_once 'iModel.php';
 class Model {
 
     public $db;
@@ -8,11 +9,11 @@ class Model {
         $this->db = new Database();
     }
 
-    function query($query) {
+    public function query($query) {
         return $this->db->connect()->query($query);
     }
 
-    function prepare($query) {
-        return $this->db->connect()->query($query);
+    public function prepare($query) {
+        return $this->db->connect()->prepare($query);
     }
 }
