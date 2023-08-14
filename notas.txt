@@ -1,7 +1,0 @@
-funcionalidad de login hecha
-
-falta implementar el metodo para crear usuarios con admin
-que es el mismo metodo de singup
-
-ARREGLAR LA RUTA DE CONFIG
-
