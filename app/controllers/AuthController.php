@@ -1,5 +1,13 @@
 <?php
+require_once 'app/models/AuthModel.php';
 class AuthController {
+
+    private $authModel;
+
+    public function __construct() {
+        $this->authModel = new AuthModel();
+    }
+    
     public function login() {
         // Lógica para el inicio de sesión
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,7 +22,7 @@ class AuthController {
                 if ($this->isAdministrator($username)) {
                     header('Location: index.php?route=administrador/manage');
                 } else {
-                    header('Location: index.php?route=empleado/dashboard');
+                    header('Location: index.php?route=empleado/timeclock');
                 }
                 exit;
             } else {
@@ -34,7 +42,12 @@ class AuthController {
     }
 
     // Métodos hipotéticos para interactuar con la autenticación y la base de datos
-    private function authenticateUser($username, $password) { /* ... */ }
-    private function isAdministrator($username) { /* ... */ }
+    private function authenticateUser($username, $password) {
+        return $this->authModel->authenticateUser($username, $password);
+    }
+
+    private function isAdministrator($username) {
+        return $this->authModel->isAdministrator($username);
+    }
 }
 ?>

@@ -1,4 +1,7 @@
 <?php
+if ($_SESSION['idEmpleado']) {
+    header('Location: index.php?route=empleado/timeclock');
+}
 $pageTitle = "Login";
 require_once 'app/views/layouts/header.php';
 ?>

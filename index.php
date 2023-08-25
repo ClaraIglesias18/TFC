@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'config/db.php';
 require_once 'routes.php';
+require_once 'app/models/Conexion.php';
 
 // Autoloader para cargar automáticamente las clases
 spl_autoload_register(function ($className) {
