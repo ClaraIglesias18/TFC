@@ -37,7 +37,7 @@ class AuthController {
         // Lógica para cerrar sesión
         // Eliminar las variables de sesión y redirigir al inicio de sesión
         session_destroy();
-        header('Location: index.php?route=default');
+        header('Location: index.php?route=auth/login');
         exit;
     }
 

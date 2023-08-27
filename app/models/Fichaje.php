@@ -29,5 +29,14 @@ class Fichaje {
         $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public function ultimosRegistrosTiempo($idEmpleado) {
+        $sql = "SELECT * FROM fichajes WHERE idEmpleado = :idEmpleado ORDER BY fecha DESC LIMIT 7";
+        $stmt = Conexion::getConexion()->prepare($sql);
+        $stmt->bindParam(':idEmpleado', $idEmpleado, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

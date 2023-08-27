@@ -1,6 +1,8 @@
+</div>
 <footer>
-        <!-- Aquí coloca el contenido del pie de página común -->
-        <p>&copy; <?php echo date('Y'); ?> Employee Portal</p>
-    </footer>
+    <h1>Employee Portal</h1>
+    <p id="version">Versión 1.0</p>
+</footer>
 </body>
+
 </html>
