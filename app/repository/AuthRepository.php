@@ -1,17 +1,16 @@
 <?php
-class AuthModel {
+require_once 'app/model/BaseModel.php';
+class AuthRepository extends BaseModel{
 
-    //falta sacar repositorio par interactuar con la base de datos
-
-    public function authenticateUser($nombreUsuario, $password) {
+    public function authenticateUser($nombreUsuario, $passwordHash) {
         $sql = "SELECT idEmpleado, password, rol FROM empleados WHERE nombreUsuario = :nombreUsuario";
-        $stmt = Conexion::getConexion()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nombreUsuario', $nombreUsuario, PDO::PARAM_STR);
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if ($user && $password == $user['password']) {
+        if ($user && password_verify($passwordHash, $user['password'])) {
             // Validación exitosa, inicia sesión
             session_start();
             $_SESSION['idEmpleado'] = $user['idEmpleado'];
@@ -24,7 +23,7 @@ class AuthModel {
 
     public function isAdministrator($nombreUsuario) {
         $sql = "SELECT rol FROM empleados WHERE nombreUsuario = :nombreUsuario";
-        $stmt = Conexion::getConexion()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nombreUsuario', $nombreUsuario, PDO::PARAM_STR);
         $stmt->execute();
 

@@ -1,5 +1,4 @@
 <?php
-require_once('app/models/EmpleadoRepository.php');
 class AdminController {
 
     private $empleadoRepository;

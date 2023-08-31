@@ -1,30 +1,28 @@
 <?php
-require_once 'app/models/Fichaje.php';
-require_once 'app/models/AuthModel.php';
-require_once 'app/models/EmpleadoRepository.php';
+
 class EmpleadoController {
 
-    private $fichaje;
-    private $authModel;
+    private $fichajeRepository;
+    private $authRepository;
     private $empleadoRepository;
 
     public function __construct() {
-        $this->fichaje = new Fichaje();
-        $this->authModel = new AuthModel();
+        $this->fichajeRepository = new FichajeRepository();
+        $this->authRepository = new AuthRepository();
         $this->empleadoRepository = new EmpleadoRepository();
     }
 
-    public function timeclock() {
+    public function fichaje() {
         // Verificar si el usuario ha iniciado sesión
-        if (!$this->authModel->isLoggedIn()) {
+        if (!$this->authRepository->isLoggedIn()) {
             header('Location: index.php?route=auth/login');
             exit();
         }
         
         // Lógica para registrar las horas de entrada/salida del empleado
         $idEmpleado = $_SESSION['idEmpleado'];
-        $fichajes = $this->fichaje->getPreviousTimeclockEntriesForToday($idEmpleado);
-        $ultimosFichajes = $this->fichaje->ultimosRegistrosTiempo($idEmpleado);
+        $fichajes = $this->fichajeRepository->getPreviousTimeclockEntriesForToday($idEmpleado);
+        $ultimosFichajes = $this->fichajeRepository->ultimosRegistrosTiempo($idEmpleado);
         
 
         $canRegisterEntryTime = true; // Lógica para determinar si se puede registrar la entrada
@@ -53,24 +51,24 @@ class EmpleadoController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['action'])) {
                 if ($_POST['action'] === 'register_entry') {
-                    $horaEntrada = date('H:i:s');
-                    $this->fichaje->saveTimeclockEntry($idEmpleado, $horaEntrada, null, date('Y-m-d'));
-                    header('Location: index.php?route=empleado/timeclock');
+                    $horaEntrada = date('H:i');
+                    $this->fichajeRepository->saveTimeclockEntry($idEmpleado, $horaEntrada, null, date('Y-m-d'));
+                    header('Location: index.php?route=empleado/fichaje');
                 } elseif ($_POST['action'] === 'register_exit') {
-                    $horaSalida = date('H:i:s');
-                    $this->fichaje->updateTimeclockExitTime($idEmpleado, $horaSalida);
-                    header('Location: index.php?route=empleado/timeclock');
+                    $horaSalida = date('H:i');
+                    $this->fichajeRepository->updateTimeclockExitTime($idEmpleado, $horaSalida);
+                    header('Location: index.php?route=empleado/fichaje');
                 }
             }
         }
 
-        require_once 'app/views/empleado/timeclock.php';
+        require_once 'app/views/empleado/fichaje.php';
     }
 
     public function perfil() {
         // mostrar los datos del empleado
         // Verificar si el usuario ha iniciado sesión
-        if (!$this->authModel->isLoggedIn()) {
+        if (!$this->authRepository->isLoggedIn()) {
             header('Location: index.php?route=auth/login');
             exit();
         }
@@ -83,6 +81,15 @@ class EmpleadoController {
 
         // Cargar la vista del perfil del usuario
         require_once 'app/views/empleado/perfil.php';
+    }
+
+    public function editarFichaje() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->fichajeRepository->editarFichaje($_POST['idFichaje'], $_POST);
+            var_dump($_POST['idFichaje']);
+            
+            header('Location: index.php?route=empleado/fichaje');
+        }
     }
     
 }

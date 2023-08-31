@@ -7,7 +7,9 @@ footer {
     color: #ddd;
 }
 
-h1, #cerrar, #version {
+h1,
+#cerrar,
+#version {
     margin: 10px;
 }
 
@@ -17,6 +19,8 @@ h1 {
 }
 
 body {
+    font-family: "Overpass", sans-serif;
+    font-weight: normal;
     display: flex;
     flex-direction: column;
 }
@@ -29,9 +33,10 @@ main {
 }
 
 .vertical-menu {
-    background-color: #324C8D;
+    background-color: #324c8d;
     width: 300px;
     max-width: 100%;
+    border-radius: 3px;
 }
 
 .pagina {
@@ -39,17 +44,25 @@ main {
     padding: 10px;
 }
 
-
-.vertical-menu a {
+.fila {
+    display: flex;
+    flex-direction: row;
+    justify-content:baseline;
+    padding-left: 15px;
+    padding-top: 15px;
+    gap: 10px;
+    border-radius: 3px;
+}
+.fila:hover {
+    background-color: #262626;
+}
+.fila a {
     padding: 10px 8px;
     text-decoration: none;
-    color: #DFE0E1;
+    color: #dfe0e1;
     display: block;
 }
 
-.vertical-menu a:hover {
-    background-color: #262626;
-}
 
 table {
     width: 100%;
@@ -71,8 +84,181 @@ td {
 th {
     background-color: #f2f2f2;
 }
- img {
+img {
     width: 300px;
     max-width: 100%;
     height: auto;
- }
+}
+
+.employee-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 700px;
+    overflow: hidden;
+}
+
+.employee-image {
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.employee-image img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.employee-details {
+    flex: 2;
+    padding: 20px;
+}
+
+.employee-details h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.employee-details p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.fichaje {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tablaFichajes {
+    margin-top: 200px;
+}
+
+.tablaFichajes caption {
+     font-weight: bold;
+}
+
+button{
+    background-color: #324c8d;
+    color:#ddd;
+    border-radius: 3px;
+    width: 200px;
+    height: 30px;
+    border-style: none;
+}
+
+button:hover {
+    background-color: #1b3064;
+    color:#ddd;
+}
+
+.botonRegistroInicio {
+    background-color: #324c8d;
+    color:#ddd;
+    border-radius: 3px;
+    width: 200px;
+    height: 30px;
+}
+
+.botonRegistroInicio:hover {
+    background-color: #1b3064;
+    color:#ddd;
+}
+
+.botonRegistroInicio:disabled {
+    background-color: #555;
+}
+
+.botonRegistroFin {
+    background-color: #324c8d;
+    color:#ddd;
+    border-radius: 3px;
+    width: 200px;
+    height: 30px;
+}
+
+.botonRegistroFin:hover {
+    background-color: #1b3064;
+    color:#ddd;
+}
+
+.botonRegistroFin:disabled {
+    background-color: #555;
+}
+
+.cerrarSesionFoto {
+    all:unset;
+    height: 30px;
+}
+
+.reloj, .iconoPerfil, .candado  {
+    all:unset;
+    height: 30px;
+}
+
+.guardar {
+    margin-bottom: 5px;
+}
+
+.agregarEmpleado {
+    text-decoration: none;
+    color: #ddd;
+}
+
+.formularioEmpleado {
+    background-color: #555;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    color: #ddd;
+    padding-right: 20px;
+}
+
+.formularioEmpleado h2 {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.formularioEmpleado form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.formularioEmpleado form input {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.formularioEmpleado form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #324c8d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.formularioEmpleado form button:hover {
+    background-color: #324c8d;
+}
+
+#version {
+    color: #262626;
+}
+

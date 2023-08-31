@@ -11,9 +11,11 @@
 
 <body>
     <header>
-        <h1><img src="public/media/logoWT.png" ></h1>
+        <h1><img src="public/media/logoWT.png"></h1>
         <?php if (isset($_SESSION['idEmpleado'])) : ?>
-            <a href="index.php?route=auth/logout" id="cerrar">Cerrar sesión</a>
+            <div class="cerrarSesion">
+                <a href="index.php?route=auth/logout" id="cerrar"><img src="public/media/cerrarSesion.png" alt="Cerrar sesion" class="cerrarSesionFoto"></a>
+            </div>
         <?php endif; ?>
     </header>
     <main>

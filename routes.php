@@ -5,8 +5,10 @@ return [
     'auth/logout' => ['controller' => 'AuthController', 'action' => 'logout'],
 
     'empleado/dashboard' => ['controller' => 'EmpleadoController', 'action' => 'dashboard'],
-    'empleado/timeclock' => ['controller' => 'EmpleadoController', 'action' => 'timeclock'],
+    'empleado/fichaje' => ['controller' => 'EmpleadoController', 'action' => 'fichaje'],
     'empleado/perfil' => ['controller' => 'EmpleadoController', 'action' => 'perfil'],
+    'empleado/editarFichaje' => ['controller' => 'EmpleadoController', 'action' => 'editarFichaje'],
+
 
     'administrador/manage' => ['controller' => 'AdminController', 'action' => 'manage'],
     'administrador/getAll' => ['controller' => 'AdminController', 'action' => 'getAll'],

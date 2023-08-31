@@ -3,15 +3,15 @@ $pageTitle = "Admin - Manage Employees";
 require_once 'app/views/layouts/header.php';
 ?>
 <div class="pagina">
-    <h2>Creación de empleado</h2>
-    <!-- Formulario para la creación de empleado -->
-    <form method="post">
+    <div class="formularioEmpleado">
+        <h2>Nuevo empleado</h2>
+        <form method="post">
             <input type="hidden" name="action" value="create_employee">
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" required><br>
             <label for="apellidos">Apellidos:</label>
             <input type="text" name="apellidos" required><br>
-            <label for="nombreUsuario">nombreUsuario</label>
+            <label for="nombreUsuario">Nombre de Usuario</label>
             <input type="text" name="nombreUsuario" required><br>
             <label for="email">Email:</label>
             <input type="email" name="email" required><br>
@@ -24,6 +24,9 @@ require_once 'app/views/layouts/header.php';
             </select><br>
             <button type="submit">Crear Empleado</button>
         </form>
+
+    </div>
+
 </div>
 </main>
 <?php

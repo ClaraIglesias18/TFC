@@ -1,30 +1,30 @@
 <?php
-// Verificar si no está definida la sesión de usuario
-/*if (!isset($_SESSION['idEmpleado'])) {
-    header('Location: index.php?route=auth/login');
-    exit();
-}*/
-$pageTitle = "Perfil";
+$pageTitle = "Perfil del Empleado";
 require_once 'app/views/layouts/header.php'; ?>
 <div class="pagina">
-    <h1>Perfil</h1>
-    <?php if (isset($errorMessage)) : ?>
-        <p style="color: red;"><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
-    <?php
-    // Aquí debes recuperar los datos del usuario desde la base de datos
-    // y mostrarlos en la página.
-    // Supongamos que $userData es un arreglo con los datos del usuario.
-    if (isset($userData)) {
-        echo '<p>Nombre: ' . $userData->nombre . '</p>';
-        echo '<p>Apellido: ' . $userData->apellidos . '</p>';
-        echo '<p>Email: ' . $userData->email . '</p>';
-        // ... otros campos del perfil ...
-    }
-    ?>
-
-
-
+    <div class="employee-card">
+        <div class="employee-image">
+            <img src="public/media/fotoPerfil.png" alt="Foto del Empleado">
+        </div>
+        <div class="employee-details">
+            <?php if (isset($errorMessage)) : ?>
+                <p style="color: red;"><?php echo $errorMessage; ?></p>
+            <?php endif; ?>
+            <?php
+            if (isset($userData)) {
+                echo '<h2>' . $userData['nombre'] . ' ' . $userData['apellidos'] . '</h2>';
+                echo '<p>Nombre de Usuario: ' . $userData['nombreUsuario'] . '</p>';
+                echo '<p>Email: ' . $userData['email'] . '</p>';
+                echo '<p>Teléfono: ' . $userData['telefono'] . '</p>';
+                if ($userData['rol'] == 1)
+                    echo '<p>Rol: Administrador</p>';
+                else {
+                    echo '<p>Rol: Empleado</p>';
+                }
+            }
+            ?>
+        </div>
+    </div>
 </div>
 </main>
 

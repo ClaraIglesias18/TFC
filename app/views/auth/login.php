@@ -1,7 +1,4 @@
 <?php
-/*if ($_SESSION['idEmpleado']) {
-    header('Location: index.php?route=empleado/timeclock');
-}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,6 +21,7 @@
                         
                         <button type="submit" title="Ingresar" name="Ingresar">Login</button>
                     <?php if (isset($errorMessage)) : ?>
+                        
                         <p><?php echo $errorMessage; ?></p>
                     <?php endif; ?>
                 </form>
@@ -33,12 +31,6 @@
                     <img src="public/media/logoWT.png" >
                     </div>
                     <hr>
-                    <!--<div class="pie-form">
-                        <a href="#">¿Perdiste tu contraseña?</a>
-                        <a href="#">¿No tienes Cuenta? Registrate</a>
-                        <hr id="hrLogin">
-                        <a href="#">« Volver</a>
-                    </div>-->
                 </div>
         </div>
 

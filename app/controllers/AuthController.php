@@ -1,25 +1,24 @@
 <?php
-require_once 'app/models/AuthModel.php';
 class AuthController {
 
-    private $authModel;
+    private $authRepository;
 
     public function __construct() {
-        $this->authModel = new AuthModel();
+        $this->authRepository = new AuthRepository();
     }
     
     public function login() {
         // Lógica para el inicio de sesión
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
-            $password = $_POST['password'];
+            $passwordHash = $_POST['password'];
             
             // Validar las credenciales y autenticar al usuario
-            $authenticated = $this->authenticateUser($username, $password); // Función hipotética para autenticar al usuario
+            $authenticated = $this->authRepository->authenticateUser($username, $passwordHash); // Función hipotética para autenticar al usuario
 
             if ($authenticated) {
                 // Redirigir a la página de dashboard del empleado o administrador
-                if ($this->isAdministrator($username)) {
+                if ($this->authRepository->isAdministrator($username)) {
                     header('Location: index.php?route=administrador/manage');
                 } else {
                     header('Location: index.php?route=empleado/timeclock');
@@ -39,15 +38,6 @@ class AuthController {
         session_destroy();
         header('Location: index.php?route=auth/login');
         exit;
-    }
-
-    // Métodos hipotéticos para interactuar con la autenticación y la base de datos
-    private function authenticateUser($username, $password) {
-        return $this->authModel->authenticateUser($username, $password);
-    }
-
-    private function isAdministrator($username) {
-        return $this->authModel->isAdministrator($username);
     }
 }
 ?>

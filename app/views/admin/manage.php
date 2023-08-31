@@ -5,7 +5,6 @@ require_once 'app/views/layouts/header.php';
 <div class="pagina">
     <h2>Administrar Empleados</h2>
 
-    <!-- Tabla de empleados -->
     <table>
         <tr>
             <th>ID</th>
@@ -16,29 +15,26 @@ require_once 'app/views/layouts/header.php';
             <th>Acciones</th>
         </tr>
         <?php
-        // Aquí debes obtener la lista de empleados desde la base de datos
-        // y mostrarlos en la tabla.
-        // Supongamos que $employeeList es una lista de empleados.
         $admin = 'checked';
         foreach ($empleados as $empleado) {
-            if ($empleado->rol == 1) {
+            if ($empleado['rol'] == 1) {
                 $admin = 'checked';
             } else {
                 $admin = '';
             }
             echo '<tr>';
             echo '<form method="post" action="index.php?route=administrador/editar">';
-            echo '<input type="hidden" name="idEmpleado" value="' . $empleado->idEmpleado . '">';
-            echo '<td>' . $empleado->idEmpleado . '</td>';
-            echo '<td><input type="text" name="nombre" value="' . $empleado->nombre . '"></td>';
-            echo '<td><input type="text" name="apellidos" value="' . $empleado->apellidos . '"></td>';
-            echo '<td><input type="text" name="email" value="' . $empleado->email . '"></td>';
+            echo '<input type="hidden" name="idEmpleado" value="' . $empleado['idEmpleado'] . '">';
+            echo '<td>' . $empleado['idEmpleado'] . '</td>';
+            echo '<td><input type="text" name="nombre" value="' . $empleado['nombre'] . '"></td>';
+            echo '<td><input type="text" name="apellidos" value="' . $empleado['apellidos'] . '"></td>';
+            echo '<td><input type="text" name="email" value="' . $empleado['email'] . '"></td>';
             echo '<td><input type="checkbox" name="rol" value="admin"' . $admin . '></td>';
             echo '<td>';
-            echo '<button type="submit">Guardar</button></form>
+            echo '<button type="submit" class="guardar">Guardar</button></form>
             <form method="post" action="index.php?route=administrador/eliminar">
-            <input type="hidden" name="idEmpleado" value="' . $empleado->idEmpleado . '">        
-            <button type="submit">Eliminar</button>
+            <input type="hidden" name="idEmpleado" value="' . $empleado['idEmpleado'] . '">        
+            <button type="submit" class="eliminar">Eliminar</button>
             </form>';
             echo '</td>';
             echo '</tr>';
@@ -46,7 +42,7 @@ require_once 'app/views/layouts/header.php';
         ?>
     </table>
 
-    <a href="index.php?route=administrador/crear">Agregar Empleado</a>
+    <button ><a href="index.php?route=administrador/crear" class="agregarEmpleado">Agregar Empleado</a></button>
 </div>
 </main>
 <?php

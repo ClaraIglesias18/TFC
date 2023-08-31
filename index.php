@@ -1,7 +1,15 @@
 <?php
 session_start();
 require_once 'routes.php';
-require_once 'app/models/Conexion.php';
+
+require_once 'app/repository/Database.php';
+require_once 'app/repository/FichajeRepository.php';
+require_once 'app/repository/AuthRepository.php';
+require_once 'app/repository/EmpleadoRepository.php';
+
+require_once 'app/model/BaseModel.php';
+
+$baseModel = new BaseModel();
 
 // Autoloader para cargar automáticamente las clases
 spl_autoload_register(function ($className) {
@@ -19,14 +27,4 @@ $action = $controllerAction['action'];
 // Crear instancia del controlador y ejecutar la acción
 $controllerInstance = new $controller();
 $controllerInstance->$action();
-
-// Cargar las vistas correspondientes
-/**$viewPath = "app/views/$route.php"; // Ruta a la vista basada en la URL
-echo $route;
-echo $viewPath;
-if (file_exists($viewPath)) {
-    require_once $viewPath;
-} else {
-    echo "Vista no encontrada.";
-}**/
 ?>

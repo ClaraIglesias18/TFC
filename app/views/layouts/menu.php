@@ -1,8 +1,16 @@
 <div class="vertical-menu">
-    <a href="index.php?route=empleado/timeclock">Timeclock</a>
-    <a href="index.php?route=empleado/perfil">Perfil del Usuario</a>
-    <?php if($_SESSION['rol'] == 1) : ?>
-        <a href="index.php?route=administrador/manage">Administrador</a>
+    <div class="fila">
+        <img src="public/media/reloj.png" class="reloj" alt="registro horario">
+        <a href="index.php?route=empleado/fichaje">Fichaje</a>
+    </div>
+    <div class="fila">
+        <img src="public/media/iconoPerfil.png" class="iconoPerfil" alt="perfil">
+        <a href="index.php?route=empleado/perfil">Perfil del empleado</a>
+    </div>
+    <?php if ($_SESSION['rol'] == 1) : ?>
+        <div class="fila">
+            <img src="public/media/candado.png" class="candado" alt="administrador">
+            <a href="index.php?route=administrador/manage">Administrador</a>
+        </div>
     <?php endif; ?>
-    <!-- Agrega más enlaces aquí para otras páginas -->
 </div>
