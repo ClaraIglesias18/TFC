@@ -47,7 +47,7 @@ main {
 .fila {
     display: flex;
     flex-direction: row;
-    justify-content:baseline;
+    justify-content: baseline;
     padding-left: 15px;
     padding-top: 15px;
     gap: 10px;
@@ -62,7 +62,6 @@ main {
     color: #dfe0e1;
     display: block;
 }
-
 
 table {
     width: 100%;
@@ -140,12 +139,12 @@ img {
 }
 
 .tablaFichajes caption {
-     font-weight: bold;
+    font-weight: bold;
 }
 
-button{
+button {
     background-color: #324c8d;
-    color:#ddd;
+    color: #ddd;
     border-radius: 3px;
     width: 200px;
     height: 30px;
@@ -154,12 +153,12 @@ button{
 
 button:hover {
     background-color: #1b3064;
-    color:#ddd;
+    color: #ddd;
 }
 
 .botonRegistroInicio {
     background-color: #324c8d;
-    color:#ddd;
+    color: #ddd;
     border-radius: 3px;
     width: 200px;
     height: 30px;
@@ -167,7 +166,7 @@ button:hover {
 
 .botonRegistroInicio:hover {
     background-color: #1b3064;
-    color:#ddd;
+    color: #ddd;
 }
 
 .botonRegistroInicio:disabled {
@@ -176,7 +175,7 @@ button:hover {
 
 .botonRegistroFin {
     background-color: #324c8d;
-    color:#ddd;
+    color: #ddd;
     border-radius: 3px;
     width: 200px;
     height: 30px;
@@ -184,7 +183,7 @@ button:hover {
 
 .botonRegistroFin:hover {
     background-color: #1b3064;
-    color:#ddd;
+    color: #ddd;
 }
 
 .botonRegistroFin:disabled {
@@ -192,12 +191,14 @@ button:hover {
 }
 
 .cerrarSesionFoto {
-    all:unset;
+    all: unset;
     height: 30px;
 }
 
-.reloj, .iconoPerfil, .candado  {
-    all:unset;
+.reloj,
+.iconoPerfil,
+.candado {
+    all: unset;
     height: 30px;
 }
 
@@ -262,3 +263,42 @@ button:hover {
     color: #262626;
 }
 
+@media all and (max-width: 775px) {
+    
+
+    main {
+        flex-direction: column;
+    }
+
+    .vertical-menu {
+        width: 100%;
+    }
+
+    .pagina {
+        flex-grow: 1;
+    }
+
+    .employee-card {
+        flex-direction: column;
+    }
+
+    .employee-image {
+        padding: 0;
+    }
+
+    .employee-details {
+        padding: 0;
+    }
+
+    .employee-details h1 {
+        font-size: 20px;
+    }
+
+    .employee-details p {
+        font-size: 12px;
+    }
+
+    .formularioEmpleado {
+        max-width: 100%;
+    }
+}

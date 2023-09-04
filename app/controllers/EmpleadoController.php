@@ -19,44 +19,47 @@ class EmpleadoController {
             exit();
         }
         
-        // Lógica para registrar las horas de entrada/salida del empleado
         $idEmpleado = $_SESSION['idEmpleado'];
-        $fichajes = $this->fichajeRepository->getPreviousTimeclockEntriesForToday($idEmpleado);
+        $fichajes = $this->fichajeRepository->obtenerFichajeActual($idEmpleado);
         $ultimosFichajes = $this->fichajeRepository->ultimosRegistrosTiempo($idEmpleado);
         
 
-        $canRegisterEntryTime = true; // Lógica para determinar si se puede registrar la entrada
-        $canRegisterExitTime = true; // Lógica para determinar si se puede registrar la salida
+        $puedeRegistrarEntrada = true; // Determina si se puede registrar la entrada
+        $puedeRegistrarSalida = true; // Determina si se puede registrar la salida
 
-        $hasEntryTime = false;
-        $hasExitTime = false;
-
+        /**
+         * 1. Si no tiene fichajes en el dia actual, se permite realizar el fichaje de entrada
+         * 2. Si en el fichaje actual hay una hora de entrada registrada y no de salida se 
+         *    permite hacer el fichaje de salida
+         * 3. Si no no se permite realizar ningun fichaje
+         */
         if($fichajes == null) {
-            $hasEntryTime = false;
-            $canRegisterEntryTime = true;
-            $hasExitTime = false;
-            $canRegisterExitTime = false;
+            $puedeRegistrarEntrada = true;
+            $puedeRegistrarSalida = false;
         } elseif($fichajes['horaEntrada'] != null && $fichajes['horaSalida'] == null) {
-            $hasEntryTime = true;
-            $hasExitTime = false;
-            $canRegisterEntryTime = false;
-            $canRegisterExitTime = true;
+            $puedeRegistrarEntrada = false;
+            $puedeRegistrarSalida = true;
         } else {
-            $hasEntryTime = true;
-            $hasExitTime = true;
-            $canRegisterEntryTime = false;
-            $canRegisterExitTime = false;
+            $puedeRegistrarEntrada = false;
+            $puedeRegistrarSalida = false;
         }
 
+        /** 
+         * Si se registra una peticion POST, la cual es 'registrarEntrada', se establece
+         * la hora de entrada a la hora actual
+         * Si se registra una peticion POST, la cual es 'registrarSalida', se establece
+         * la hora de salida a la hora actual  
+         */ 
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['action'])) {
-                if ($_POST['action'] === 'register_entry') {
+                if ($_POST['action'] === 'registrarEntrada') {
                     $horaEntrada = date('H:i');
-                    $this->fichajeRepository->saveTimeclockEntry($idEmpleado, $horaEntrada, null, date('Y-m-d'));
+                    $this->fichajeRepository->crearFichaje($idEmpleado, $horaEntrada, null, date('Y-m-d'));
                     header('Location: index.php?route=empleado/fichaje');
-                } elseif ($_POST['action'] === 'register_exit') {
+                } elseif ($_POST['action'] === 'registrarSalida') {
                     $horaSalida = date('H:i');
-                    $this->fichajeRepository->updateTimeclockExitTime($idEmpleado, $horaSalida);
+                    $this->fichajeRepository->actualizarHoraSalida($idEmpleado, $horaSalida);
                     header('Location: index.php?route=empleado/fichaje');
                 }
             }
@@ -66,7 +69,6 @@ class EmpleadoController {
     }
 
     public function perfil() {
-        // mostrar los datos del empleado
         // Verificar si el usuario ha iniciado sesión
         if (!$this->authRepository->isLoggedIn()) {
             header('Location: index.php?route=auth/login');

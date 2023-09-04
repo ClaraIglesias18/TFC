@@ -10,7 +10,7 @@
     <?php if ($_SESSION['rol'] == 1) : ?>
         <div class="fila">
             <img src="public/media/candado.png" class="candado" alt="administrador">
-            <a href="index.php?route=administrador/manage">Administrador</a>
+            <a href="index.php?route=administrador/administrar">Administrador</a>
         </div>
     <?php endif; ?>
 </div>

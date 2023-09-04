@@ -6,6 +6,8 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="public/css/loginStyle.css">
+    <link rel="icon" href="public/media/logoReducido.png" type="image/x-icon">
+    <link rel="shortcut icon" href="public/media/logoReducido.png" type="image/x-icon">
 </head>
 
 <body class="login">

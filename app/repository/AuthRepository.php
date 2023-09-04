@@ -2,6 +2,7 @@
 require_once 'app/model/BaseModel.php';
 class AuthRepository extends BaseModel{
 
+    // Lógica para autenticar al usuario por medio de nombre de usuario y el hash de la contraseña
     public function authenticateUser($nombreUsuario, $passwordHash) {
         $sql = "SELECT idEmpleado, password, rol FROM empleados WHERE nombreUsuario = :nombreUsuario";
         $stmt = $this->conn->prepare($sql);
@@ -21,6 +22,7 @@ class AuthRepository extends BaseModel{
         return false;
     }
 
+    // Lógica para determinar si el usuarioes administrador o no
     public function isAdministrator($nombreUsuario) {
         $sql = "SELECT rol FROM empleados WHERE nombreUsuario = :nombreUsuario";
         $stmt = $this->conn->prepare($sql);
@@ -32,6 +34,8 @@ class AuthRepository extends BaseModel{
         return ($user && $user['rol'] == 1);
     }
 
+    // Lógica para determinar si el usuario esta logeado comprobando
+    // si hay una sesión con su ID creada
     public function isLoggedIn() {
         return isset($_SESSION['idEmpleado']);
     }

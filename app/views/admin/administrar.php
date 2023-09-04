@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Admin - Manage Employees";
+$pageTitle = "Administrar Empleados";
 require_once 'app/views/layouts/header.php';
 ?>
 <div class="pagina">

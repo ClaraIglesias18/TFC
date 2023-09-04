@@ -2,7 +2,8 @@
 require_once 'app/model/BaseModel.php';
 class FichajeRepository extends BaseModel{
 
-    public function getPreviousTimeclockEntriesForToday($idEmpleado) {
+    // Consulta si hay registros previos en la base de datos y los devuelve
+    public function obtenerFichajeActual($idEmpleado) {
         $today = date('Y-m-d');
         $sql = "SELECT idFichaje, idEmpleado, horaEntrada, horaSalida, fecha FROM fichajes WHERE idEmpleado = :idEmpleado AND DATE(fecha) = :today";
         $stmt = $this->conn->prepare($sql);
@@ -13,7 +14,8 @@ class FichajeRepository extends BaseModel{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateTimeclockExitTime($idEmpleado, $horaSalida) {
+    // Actualiza la hora de salida de un fichaje
+    public function actualizarHoraSalida($idEmpleado, $horaSalida) {
         $sql = "UPDATE fichajes SET horaSalida = :horaSalida WHERE idEmpleado = :idEmpleado";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEmpleado', $idEmpleado, PDO::PARAM_INT);
@@ -21,7 +23,8 @@ class FichajeRepository extends BaseModel{
         $stmt->execute();
     }
 
-    public function saveTimeclockEntry($idEmpleado, $horaEntrada, $horaSalida, $fecha) {
+    // Crea un fichaje
+    public function crearFichaje($idEmpleado, $horaEntrada, $horaSalida, $fecha) {
         $sql = "INSERT INTO fichajes (idEmpleado, horaEntrada, horaSalida, fecha) VALUES (:idEmpleado, :horaEntrada, :horaSalida, :fecha)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEmpleado', $idEmpleado, PDO::PARAM_INT);
@@ -31,6 +34,7 @@ class FichajeRepository extends BaseModel{
         $stmt->execute();
     }
 
+    // Saca los ultimos 7 registros de fichajes
     public function ultimosRegistrosTiempo($idEmpleado) {
         $sql = "SELECT * FROM fichajes WHERE idEmpleado = :idEmpleado ORDER BY fecha DESC LIMIT 7";
         $stmt = $this->conn->prepare($sql);
@@ -40,6 +44,7 @@ class FichajeRepository extends BaseModel{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Actualiza un fichaje
     public function editarfichaje($idFichaje, $datos) {
         $conexion = $this->conn;
         $sql = "UPDATE fichajes SET horaEntrada = :horaEntrada, horaSalida = :horaSalida, fecha = :fecha WHERE idFichaje = :idFichaje";
@@ -50,5 +55,6 @@ class FichajeRepository extends BaseModel{
         $consulta->bindParam(':fecha', $datos['fecha'], PDO::PARAM_STR);
         $consulta->execute();
     }
+
 }
 ?>

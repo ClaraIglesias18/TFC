@@ -10,7 +10,7 @@ return [
     'empleado/editarFichaje' => ['controller' => 'EmpleadoController', 'action' => 'editarFichaje'],
 
 
-    'administrador/manage' => ['controller' => 'AdminController', 'action' => 'manage'],
+    'administrador/administrar' => ['controller' => 'AdminController', 'action' => 'administrar'],
     'administrador/getAll' => ['controller' => 'AdminController', 'action' => 'getAll'],
     'administrador/crear' => ['controller' => 'AdminController', 'action' => 'agregarEmpleado'],
     'administrador/editar' => ['controller' => 'AdminController', 'action' => 'editarEmpleado'],

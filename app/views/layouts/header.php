@@ -4,6 +4,8 @@
 <head>
     <title><?php echo $pageTitle; ?></title>
     <link rel="stylesheet" href="public/css/style.css">
+    <link rel="icon" href="public/media/logoReducido.png" type="image/x-icon">
+    <link rel="shortcut icon" href="public/media/logoReducido.png" type="image/x-icon">
     <style>
 
     </style>
@@ -19,5 +21,4 @@
         <?php endif; ?>
     </header>
     <main>
-        <!-- Aquí coloca el contenido del cuerpo de la página -->
         <?php require_once 'app/views/layouts/menu.php'; ?>
