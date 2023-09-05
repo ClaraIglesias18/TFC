@@ -35,11 +35,12 @@ class EmpleadoRepository extends BaseModel{
         } else {
             $rol = 0;
         }
-        $sql = "UPDATE empleados SET nombre = :nombre, apellidos = :apellidos, rol = :rol WHERE idEmpleado = :idEmpleado";
+        $sql = "UPDATE empleados SET nombre = :nombre, apellidos = :apellidos, nombreUsuario = :nombreUsuario, rol = :rol WHERE idEmpleado = :idEmpleado";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':idEmpleado', $idEmpleado, PDO::PARAM_INT);
         $stmt->bindParam(':nombre', $datos['nombre'], PDO::PARAM_STR);
         $stmt->bindParam(':apellidos', $datos['apellidos'], PDO::PARAM_STR);
+        $stmt->bindParam(':nombreUsuario', $datos['nombreUsuario'], PDO::PARAM_STR);
         $stmt->bindParam(':rol', $rol, PDO::PARAM_INT);
         $stmt->execute();
     }

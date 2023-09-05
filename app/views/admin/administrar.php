@@ -9,7 +9,8 @@ require_once 'app/views/layouts/header.php';
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Apellidos</th>
+            <th>Nombre de Usuario</th>
             <th>Email</th>
             <th>Admin</th>
             <th>Acciones</th>
@@ -28,6 +29,7 @@ require_once 'app/views/layouts/header.php';
             echo '<td>' . $empleado['idEmpleado'] . '</td>';
             echo '<td><input type="text" name="nombre" value="' . $empleado['nombre'] . '"></td>';
             echo '<td><input type="text" name="apellidos" value="' . $empleado['apellidos'] . '"></td>';
+            echo '<td><input type="text" name="nombreUsuario" value="' . $empleado['nombreUsuario'] . '"></td>';
             echo '<td><input type="text" name="email" value="' . $empleado['email'] . '"></td>';
             echo '<td><input type="checkbox" name="rol" value="admin"' . $admin . '></td>';
             echo '<td>';

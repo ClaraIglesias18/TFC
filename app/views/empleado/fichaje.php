@@ -12,13 +12,13 @@ require_once 'app/views/layouts/header.php'; ?>
         <form method="post" class="fichajeForm">
             <?php if ($puedeRegistrarEntrada) : ?>
                 <input type="hidden" name="horaEntrada" value="<?php echo date('Y-m-d H:i'); ?>">
-                <button type="submit" name="action" value="resgistrarEntrada" class="botonRegistroInicio">Registrar inicio</button>
+                <button type="submit" name="action" value="registrarEntrada" class="botonRegistroInicio">Registrar inicio</button>
                 <button type="submit" disabled="action" value="registrarSalida" class="botonRegistroFin">Registrar fin</button>
             <?php endif; ?>
 
             <?php if ($puedeRegistrarSalida) : ?>
                 <input type="hidden" name="horaSalida" value="<?php echo date('Y-m-d H:i'); ?>">
-                <button type="submit" disabled name="action" value="resgistrarEntrada" class="botonRegistroInicio">Registrar inicio</button>
+                <button type="submit" disabled name="action" value="registrarEntrada" class="botonRegistroInicio">Registrar inicio</button>
                 <button type="submit" name="action" value="registrarSalida" class="botonRegistroFin">Registrar fin</button>
 
             <?php endif; ?>
