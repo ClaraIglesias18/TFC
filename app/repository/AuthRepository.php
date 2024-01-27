@@ -22,6 +22,8 @@ class AuthRepository extends BaseModel{
         return false;
     }
 
+    
+
     // Lógica para determinar si el usuarioes administrador o no
     public function isAdministrator($nombreUsuario) {
         $sql = "SELECT rol FROM empleados WHERE nombreUsuario = :nombreUsuario";
@@ -39,4 +41,5 @@ class AuthRepository extends BaseModel{
     public function isLoggedIn() {
         return isset($_SESSION['idEmpleado']);
     }
+
 }

@@ -2,9 +2,11 @@
 class AuthController {
 
     private $authRepository;
+    private $empleadoRepository;
 
     public function __construct() {
         $this->authRepository = new AuthRepository();
+        $this->empleadoRepository = new EmpleadoRepository;
     }
     
     //Lógica para el inicio de sesion y sus correspondientes validaciones
@@ -37,6 +39,21 @@ class AuthController {
         session_destroy();
         header('Location: index.php?route=auth/login');
         exit;
+    }
+
+    public function registro() {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $datos = $_POST;
+            $datos['rol'] = 0;
+
+            $this->empleadoRepository->agregarEmpleado($datos);
+
+            header('Location: index.php?route=auth/login');
+        }
+
+        require_once 'app/views/auth/registro.php';
     }
 }
 ?>

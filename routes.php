@@ -3,6 +3,7 @@ return [
     'default' => ['controller' => 'AuthController', 'action' => 'login'],
     'auth/login' => ['controller' => 'AuthController', 'action' => 'login'],
     'auth/logout' => ['controller' => 'AuthController', 'action' => 'logout'],
+    'auth/register' => ['controller' => 'AuthController', 'action' => 'registro'],
 
     'empleado/dashboard' => ['controller' => 'EmpleadoController', 'action' => 'dashboard'],
     'empleado/fichaje' => ['controller' => 'EmpleadoController', 'action' => 'fichaje'],
