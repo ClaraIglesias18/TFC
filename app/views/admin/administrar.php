@@ -3,7 +3,7 @@ $pageTitle = "Administrar Empleados";
 require_once 'app/views/layouts/header.php';
 ?>
 <div class="pagina">
-    <h2>Administrar Empleados</h2>
+    <h2>Administrar Empleados esta es una nueva version</h2>
 
     <table>
         <tr>
